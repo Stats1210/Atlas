@@ -193,9 +193,12 @@
               <path d={chartPath()} fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <!-- Data points -->
               {#each e1rmTrend() as point, i}
-                {@const W = 300; @const H = 80}
+                {@const W = 300}
+                {@const H = 80}
                 {@const vals = e1rmTrend().map(d => d.e1rm)}
-                {@const min = Math.min(...vals); @const max = Math.max(...vals); @const range = max - min || 1}
+                {@const min = Math.min(...vals)}
+                {@const max = Math.max(...vals)}
+                {@const range = max - min || 1}
                 <circle
                   cx={(i / Math.max(e1rmTrend().length - 1, 1)) * W}
                   cy={H - ((point.e1rm - min) / range) * H}
