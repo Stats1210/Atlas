@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { base } from '$app/paths';
   import { page } from '$app/stores';
   import { activeSession } from '$lib/stores/activeSession.svelte';
   import { fmtDuration } from '$lib/utils/format';
@@ -14,10 +15,10 @@
   });
 
   function goToSession() {
-    goto('/session');
+    goto(base + '/session');
   }
 
-  const onSession = $derived($page.url.pathname === '/session');
+  const onSession = $derived($page.url.pathname === base + '/session');
 </script>
 
 {#if activeSession.isActive && !onSession}

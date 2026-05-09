@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { base } from '$app/paths';
   import { db, type WorkoutSession, type CardioSession } from '$lib/db';
   import { fmtDate, fmtDuration, fmtVolume } from '$lib/utils/format';
 
@@ -57,7 +58,7 @@
       {#each filtered as session (session.id)}
         {#if session.kind === 'strength'}
           <button
-            onclick={() => goto(`/session/${session.id}`)}
+            onclick={() => goto(base + `/session/${session.id}`)}
             class="card w-full text-left"
           >
             <div class="flex items-start justify-between">
@@ -81,7 +82,7 @@
         {:else}
           {@const cs = session as CardioSession}
           <button
-            onclick={() => goto(`/session/cardio-${session.id}`)}
+            onclick={() => goto(base + `/session/cardio-${session.id}`)}
             class="card w-full text-left"
           >
             <div class="flex items-start justify-between">

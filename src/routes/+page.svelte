@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { base } from '$app/paths';
   import { activeSession } from '$lib/stores/activeSession.svelte';
   import { db } from '$lib/db';
   import { fmtDate, fmtDuration, fmtVolume } from '$lib/utils/format';
@@ -17,13 +18,13 @@
 
   async function startBlankSession() {
     await activeSession.start('Workout');
-    goto('/session');
+    goto(base + '/session');
   }
 
   async function repeatLastSession() {
     await activeSession.start(lastSession?.name ?? 'Workout');
     await activeSession.repeatLastSession();
-    goto('/session');
+    goto(base + '/session');
   }
 </script>
 
@@ -38,7 +39,7 @@
 
   <!-- Active session CTA -->
   {#if activeSession.isActive}
-    <button onclick={() => goto('/session')} class="btn btn-primary mb-4">
+    <button onclick={() => goto(base + '/session')} class="btn btn-primary mb-4">
       Return to active session →
     </button>
   {:else}
@@ -65,7 +66,7 @@
     <!-- Cardio CTA -->
     <div class="card mb-3">
       <div class="text-label-lg mb-3" style="color: var(--color-tertiary);">Cardio</div>
-      <button onclick={() => goto('/cardio')} class="btn btn-secondary w-full">
+      <button onclick={() => goto(base + '/cardio')} class="btn btn-secondary w-full">
         + Log Cardio Session
       </button>
     </div>
@@ -74,7 +75,7 @@
     {#if lastSession}
       <div class="mt-6">
         <div class="text-label-sm mb-3" style="color: var(--color-tertiary);">Last Session</div>
-        <button onclick={() => goto('/history')} class="card w-full text-left">
+        <button onclick={() => goto(base + '/history')} class="card w-full text-left">
           <div class="flex items-start justify-between">
             <div>
               <div class="text-body-md font-semibold" style="color: var(--color-primary);">{lastSession.name}</div>

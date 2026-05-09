@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { base } from '$app/paths';
   import { activeSession } from '$lib/stores/activeSession.svelte';
   import { fmtDuration } from '$lib/utils/format';
   import ExerciseBlock from '$lib/components/ExerciseBlock.svelte';
@@ -14,7 +15,7 @@
   let finishing    = $state(false);
 
   $effect(() => {
-    if (!activeSession.isActive) { goto('/'); return; }
+    if (!activeSession.isActive) { goto(base + '/'); return; }
     elapsed = activeSession.elapsedSec;
     const t = setInterval(() => { elapsed = activeSession.elapsedSec; }, 1000);
     return () => clearInterval(t);
@@ -28,13 +29,13 @@
   async function finish() {
     finishing = true;
     await activeSession.finish(sessionNotes, null);
-    goto('/history');
+    goto(base + '/history');
   }
 
   async function discard() {
     if (!confirm('Discard this session? All logged sets will be deleted.')) return;
     await activeSession.discard();
-    goto('/');
+    goto(base + '/');
   }
 
   const prCount = $derived(

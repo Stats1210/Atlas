@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import { goto } from '$app/navigation';
+  import { base } from '$app/paths';
   import { db, type WorkoutSession, type SessionExercise, type SessionSet } from '$lib/db';
   import { fmtDate, fmtDuration, fmtWeight, fmtVolume } from '$lib/utils/format';
   import { settings } from '$lib/stores/settings.svelte';
@@ -37,7 +38,7 @@
 
 <div class="px-4 pt-6 pb-8">
   <!-- Back -->
-  <button onclick={() => goto('/history')} class="flex items-center gap-1 mb-4" style="color: var(--color-tertiary);">
+  <button onclick={() => goto(base + '/history')} class="flex items-center gap-1 mb-4" style="color: var(--color-tertiary);">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     <span class="text-body-sm">History</span>
   </button>

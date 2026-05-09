@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
+  import { base } from '$app/paths';
 
   const tabs = [
     { href: '/',          label: 'Log',      icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
@@ -13,9 +14,9 @@
 <nav class="fixed bottom-0 left-0 right-0 z-30 pb-safe" style="background: var(--color-raised); border-top: 1px solid var(--color-border-subtle);">
   <div class="flex">
     {#each tabs as tab}
-      {@const active = $page.url.pathname === tab.href || ($page.url.pathname.startsWith(tab.href) && tab.href !== '/')}
+      {@const active = $page.url.pathname === base + tab.href || ($page.url.pathname.startsWith(base + tab.href) && tab.href !== '/')}
       <a
-        href={tab.href}
+        href={base + tab.href}
         class="flex-1 flex flex-col items-center justify-center gap-1 py-3 transition-fast"
         style="color: {active ? 'var(--color-accent)' : 'var(--color-tertiary)'}; min-height: 64px;"
       >
